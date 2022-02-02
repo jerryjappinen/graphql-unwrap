@@ -1,0 +1,56 @@
+{
+  "name": "graphql-unwrapper",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/index.js",
+  "engines": {
+    "node": "14.x",
+    "npm": "6.14.15"
+  },
+  "directories": {
+    "lib": "./"
+  },
+  "scripts": {
+    "build": "babel src --out-dir ./",
+    "clean": "git clean -f",
+    "clean:dry": "git clean -n",
+    "prepare": "npm run build",
+    "patch": "git push && npm version patch -m \"New patch version\" && npm publish && git push -u origin HEAD --tags",
+    "minor": "git push && npm version minor -m \"New minor version\" && npm publish && git push -u origin HEAD --tags",
+    "major": "git push && npm version major -m \"New major version\" && npm publish && git push -u origin HEAD --tags",
+    "lint": "eslint src/** spec/**",
+    "lint:fix": "npm run lint -- --fix",
+    "lint:fix:dry": "npm run lint -- --fix-dry-run",
+    "test": "jest --config jest.config.js",
+    "test:watch": "npm run test -- --watch"
+  },
+  "author": {
+    "name": "Jerry Jäppinen",
+    "url": "https://github.com/jerryjappinen"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jerryjappinen/graphql-unwrapper.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.0",
+    "@types/jest": "^26.0.10",
+    "babel-jest": "^26.3.0",
+    "eslint": "^7.7.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "jest": "^27.0.5",
+    "jest-chain": "^1.1.5",
+    "jest-extended": "^0.11.5"
+  }
+}
