@@ -11,7 +11,7 @@ export default (listOrObject) => {
     return [
       entries,
       listOrObject.map((entry) => {
-        return 'id'
+        return entry.id
       })
     ]
   }
