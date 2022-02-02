@@ -1,5 +1,5 @@
 {
-  "name": "graphql-unwrapper",
+  "name": "graphql-unwrap",
   "version": "0.0.1",
   "description": "Unwrap nested objects from GraphQL responses. Works with GraphCMS and other providers.",
   "main": "lib/index.js",
