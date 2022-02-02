@@ -30,7 +30,7 @@ import unwrap from 'graphql-unwrap'
 import { request } from 'graphql-request'
 import unwrap from 'graphql-unwrap'
 
-[entriesById, ids] = unwrap(await request('https://graphql.endpoint.com/', query))
+[entriesById, ids] = unwrap(await request('https://graphql.api.com/', query))
 ```
 
 
@@ -42,7 +42,7 @@ Let's think of the following example:
 import { request } from 'graphql-request'
 import unwrap from 'graphql-unwrap'
 
-const data = await request('https://graphql.endpoint.com/', `
+const data = await request('https://graphql.api.com/', `
   blogPosts (first: 20, orderBy: { field: created_at }) {
     __typename
     id
@@ -101,7 +101,7 @@ function get (query) {
 
   // Request data
   [entriesById, ids] = unwrap(
-    await request('https://graphql.endpoint.com/', query)
+    await request('https://graphql.api.com/', query)
   )
 
   // Update store
