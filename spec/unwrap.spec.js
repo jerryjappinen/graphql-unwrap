@@ -1,4 +1,4 @@
-import unwrap from '../src/index'
+import unwrap from '../src/unwrap'
 
 describe('unwrap', () => {
   it('should return correct types', async () => {
