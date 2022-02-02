@@ -24,13 +24,13 @@ import unwrap from 'graphql-unwrap'
 
 # Usage
 
-## Simple usage
+## Quick start
 
 ```js
 import { request } from 'graphql-request'
 import unwrap from 'graphql-unwrap'
 
-[entriesById, ids] = unwrap(await request('https://graphql.endpoint.com/', query)
+[entriesById, ids] = unwrap(await request('https://graphql.endpoint.com/', query))
 ```
 
 
