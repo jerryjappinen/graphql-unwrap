@@ -30,7 +30,13 @@ import unwrap from 'graphql-unwrap'
 import { request } from 'graphql-request'
 import unwrap from 'graphql-unwrap'
 
-[entriesById, ids] = unwrap(await request('https://graphql.api.com/', query))
+const data = await request('https://graphql.api.com/', query)
+
+// When `data` is an object or list of objects
+[entriesById, ids] = unwrap(data)
+
+// When `data` is keyed by endpoint
+[entriesById, idsByEndpoint] = unwrap(data, true)
 ```
 
 
