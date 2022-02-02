@@ -1,4 +1,4 @@
-import isPlainObject from 'lodash/isPlainObject'
+import isArray from 'lodash/isArray'
 import merge from 'lodash/merge'
 
 import unwrap from './unwrap'
@@ -10,7 +10,7 @@ export default (responsesByEndpoint, keys) => {
   const idsByEndpoint = {}
 
   // Pick all keys by default, unless otherwise specified
-  const keysToPick = isPlainObject(keys) ? keys : Object.keys(responsesByEndpoint)
+  const keysToPick = isArray(keys) ? keys : Object.keys(responsesByEndpoint)
 
   // Iterate through each endpoint that we wanted
   for (let i = 0; i < keysToPick.length; i++) {

@@ -75,7 +75,7 @@ const data = await request('https://graphql.api.com/', `
   }
 `)
 
-const [entriesById, blogPostIds] = unwrap(data)
+const [entriesById, blogPostIds] = unwrap(data, true)
 ```
 
 We requested data nested on 4 levels. Once unwrapped, `entriesById` will include every unique resource only once. While the GraphQL data might include the same author, country and capital multiple times, `entriesById` will include it only once.
