@@ -1,6 +1,6 @@
 {
   "name": "graphql-unwrap",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Unwrap nested objects from GraphQL responses. Works with GraphCMS and other providers.",
   "main": "dist/index",
   "engines": {
