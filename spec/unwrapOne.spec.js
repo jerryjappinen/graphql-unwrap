@@ -62,8 +62,6 @@ describe('unwrapOne', () => {
       typeKey: 'type'
     })
 
-    console.log(ids)
-
     expect(ids.indexOf('a-1') > -1).toBeTruthy()
     expect(entries['a-1'].type).toBeString()
   })

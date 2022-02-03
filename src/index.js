@@ -12,7 +12,7 @@ export default (responsesByEndpoint, options) => {
   // Pick all keys by default, unless otherwise specified
   const keysToPick = isArray(options)
     ? options
-    : options.keys && isArray(options.keys)
+    : options && options.keys && isArray(options.keys)
       ? options.keys
       : Object.keys(responsesByEndpoint)
 
