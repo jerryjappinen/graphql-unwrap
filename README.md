@@ -22,9 +22,9 @@ Import in your JavaScript code:
 import unwrap from 'graphql-unwrap'
 ```
 
-#### GraphQL server requirements
+#### Requirements
 
-For this client-side library to work, your GraphQL API must return a globally unique ID and a type name for each entry. These fields are called `id` and `__typename` by default, but you can change this by passing options.
+For this client-side library to work, your GraphQL API must be able to return a globally unique ID and a type name for each entry. You must request these fields (`id` and `__typename` by default) in every query.
 
 # Usage
 
