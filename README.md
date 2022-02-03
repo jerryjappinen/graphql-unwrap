@@ -4,7 +4,7 @@ Unwrap nested objects from GraphQL responses into a flat storage by ID. Works wi
 
 GraphQL endpoints typically return nested data. Deep nesting and recursion can sometimes be hard to handle, though. This library turns every GraphQL response into a more manageable, flat data structure that makes client-side development easier.
 
-Inspired with `fetch-deep-contentful-data`(https://observablehq.com/@jerryjappinen/contentful).
+Demo on Observable and GraphCMS: [observablehq.com](https://observablehq.com/@jerryjappinen/graph)
 
 
 
@@ -26,25 +26,63 @@ import unwrap from 'graphql-unwrap'
 
 ## Quick start
 
+#### `unwrap(data, [options])`
+
 ```js
 import { request } from 'graphql-request'
 import unwrap from 'graphql-unwrap'
 
+// `data` must include `id` and `__typename` for every entry
 const data = await request('https://graphql.api.com/', query)
 
 [entriesById, idsByEndpoint] = unwrap(data)
 ```
 
-You can choose to unwrap only some of the queries:
+You can choose to unwrap only some of the endpoints in your query:
 
 ```js
-[entriesById, idsByEnpoint] = unwrap(data, ['posts', 'users'])
+[entriesById, idsByEndpoint] = unwrap(data, ['posts', 'users'])
 ```
 
-You can unwrap a single object or a list of objects:
+To override all defaults:
 
 ```js
-[entriesById, ids] = unwrap(data, false)
+[entriesById, idsByEndpoint] = unwrap(data, {
+  keys: ['posts', 'users'],
+  idKey: 'uuid',
+  typeKey: 'type'
+})
+```
+
+#### `unwrapOne(data, [options])`
+
+You can unwrap a single object or a list, which is handy when you have arbitrary GraphQL responses:
+
+```js
+import { request } from 'graphql-request'
+import unwrapOne from 'graphql-unwrap/unwrapOne'
+
+const data = await request('https://graphql.api.com/', `{
+  insert_todos (
+    objects: [{
+      title: "Foo bar"
+    }]
+  ) {
+    returning {
+      __typename
+      id
+      title
+
+      created_by {
+        __typename
+        id
+        email
+      }
+    }
+  }
+}`)
+
+[entriesById, ids] = unwrapOne(data.insert_todos.returning)
 ```
 
 ## Deeply nested data
@@ -85,13 +123,9 @@ const data = await request('https://graphql.api.com/', `
 const [entriesById, blogPostIds] = unwrap(data, true)
 ```
 
-We requested data nested on 4 levels. Once unwrapped, `entriesById` will include every unique resource only once. While the GraphQL data might include the same author, country and capital multiple times, `entriesById` will include it only once.
+We requested data nested on 4 levels. Once unwrapped, `entriesById` will include every unique resource only once, even though the GraphQL data might include the same author, country and capital multiple times. `entriesById` will also include all capitals and countries by their ID, even though they're nested in the original data.
 
-`entriesById` will also include all capitals and countries by their ID. You won't have to dig through arbitrary nested response data to use it.
-
-We requested the 20 most recent blog posts. `blogPostIds` will have the IDs in correct order. In nested reference fields, the order will also be correct - just IDs instead of recursive data.
-
-Output will look like this:
+As we requested the 20 most recent posts, `blogPostIds` will have their IDs in correct order. In nested reference fields, the order will also be correct - just IDs instead of recursive data.
 
 
 
@@ -99,7 +133,9 @@ Output will look like this:
 
 In a typical application, you will make many queries that includes the same data. For example, when navigating from a blog post listing page into an actual blog post, some of the blog post data has already been loaded, while some is still missing.
 
-The way to deal with this is to recursively merge new `entries` into the `entries` of previous responses, maintaining a single source of truth of the latest data that the API has sent. This way, it's easy to render the title of the blog post, even if the body text is still being loaded, for example.
+The way to deal with this is to recursively merge new `entries` into the `entries` of previous responses, maintaining a single source of truth of the latest data that the API has sent.
+
+This way, it's easy to render the title of the blog post, even if the body text is still being loaded, for example.
 
 
 ```js

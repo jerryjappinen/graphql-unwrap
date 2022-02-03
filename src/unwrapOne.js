@@ -3,22 +3,26 @@ import isArray from 'lodash/isArray'
 import unwrapEntry from './unwrapEntry'
 import unwrapEntryList from './unwrapEntryList'
 
-export default (listOrObject) => {
+import treatOptions from './treatOptions'
+
+export default (listOrObject, options) => {
+  const { idKey } = treatOptions(options)
+
   if (isArray(listOrObject)) {
-    const entries = unwrapEntryList(listOrObject)
+    const entries = unwrapEntryList(listOrObject, options)
 
     // Return data and ordered list of IDs as defined in the original data
     return [
       entries,
       listOrObject.map((entry) => {
-        return entry.id
+        return entry[idKey]
       })
     ]
   }
 
   // Convert single resource into the same response format
   return [
-    unwrapEntry(listOrObject),
-    [listOrObject.id]
+    unwrapEntry(listOrObject, options),
+    [listOrObject[idKey]]
   ]
 }
