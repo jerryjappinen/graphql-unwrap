@@ -22,6 +22,10 @@ Import in your JavaScript code:
 import unwrap from 'graphql-unwrap'
 ```
 
+#### GraphQL server requirements
+
+For this client-side library to work, your GraphQL API must return a globally unique ID and a type name for each entry. These fields are called `id` and `__typename` by default, but you can change this by passing options.
+
 # Usage
 
 ## Quick start
@@ -162,11 +166,3 @@ function get (query) {
 
 const blogPostIds = await get(blogQuery)
 ```
-
-
-
-# GraphQL server requirements
-
-There are a couple of requirements that your GraphQL endpoints must satisfy for this library to work with it.
-
-First, they must return a `__typename` for each type of entry. Secondly, each entry must have a globally unique ID.
