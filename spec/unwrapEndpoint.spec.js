@@ -1,8 +1,8 @@
-import unwrap from '../src/unwrap'
+import unwrapEndpoint from '../src/unwrapEndpoint'
 
-describe('unwrap', () => {
+describe('unwrapEndpoint', () => {
   it('should return correct types', async () => {
-    const [entries, ids] = unwrap({
+    const [entries, ids] = unwrapEndpoint({
       __typename: 'Parent',
       id: 'a-1',
 

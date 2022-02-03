@@ -1,10 +1,11 @@
-import unwrap from './unwrap'
-import unwrapAll from './unwrapAll'
+import unwrapEndpoint from './unwrapEndpoint'
+import unwrapEach from './unwrapEach'
 
 export default (listOrObject, endpointKeys) => {
-  if (endpointKeys) {
-    return unwrapAll(listOrObject, endpointKeys)
+  // Unwrap as a single endpoint by setting the second parameter to false
+  if (endpointKeys === false) {
+    return unwrapEndpoint(listOrObject)
   }
 
-  return unwrap(listOrObject)
+  return unwrapEach(listOrObject, endpointKeys)
 }

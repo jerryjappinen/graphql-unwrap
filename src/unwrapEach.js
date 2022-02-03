@@ -1,7 +1,7 @@
 import isArray from 'lodash/isArray'
 import merge from 'lodash/merge'
 
-import unwrap from './unwrap'
+import unwrapEndpoint from './unwrapEndpoint'
 
 // GraphQL responses are usually returned keyed by the name of the endpoint or query
 // Pass the entire response to this method to get the results unwrapped from each endpoint
@@ -15,7 +15,7 @@ export default (responsesByEndpoint, keys) => {
   // Iterate through each endpoint that we wanted
   for (let i = 0; i < keysToPick.length; i++) {
     const responseEndpoint = keysToPick[i]
-    const [endpointEntries, endpointIds] = unwrap(responsesByEndpoint[responseEndpoint])
+    const [endpointEntries, endpointIds] = unwrapEndpoint(responsesByEndpoint[responseEndpoint])
 
     // Store new data
     entries = merge({}, entries, endpointEntries)
