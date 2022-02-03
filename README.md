@@ -32,13 +32,20 @@ import unwrap from 'graphql-unwrap'
 
 const data = await request('https://graphql.api.com/', query)
 
-// When `data` is an object or list of objects
-[entriesById, ids] = unwrap(data)
-
-// When `data` is keyed by endpoint
-[entriesById, idsByEndpoint] = unwrap(data, true)
+[entriesById, idsByEndpoint] = unwrap(data)
 ```
 
+You can choose to unwrap only some of the queries:
+
+```js
+[entriesById, idsByEnpoint] = unwrap(data, ['posts', 'users'])
+```
+
+You can unwrap a single object or a list of objects:
+
+```js
+[entriesById, ids] = unwrap(data, false)
+```
 
 ## Deeply nested data
 
