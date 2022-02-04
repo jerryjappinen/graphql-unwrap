@@ -3,7 +3,7 @@ import merge from 'lodash/merge'
 
 import unwrapOne from './unwrapOne'
 
-export { unwrapOne as exportOne }
+export { unwrapOne }
 
 // GraphQL responses are usually returned keyed by the name of the endpoint or query
 // Pass the entire response to this method to get the results unwrapped from each endpoint
