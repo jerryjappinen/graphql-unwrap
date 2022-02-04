@@ -5,7 +5,7 @@ import unwrapOne from './unwrapOne'
 
 // GraphQL responses are usually returned keyed by the name of the endpoint or query
 // Pass the entire response to this method to get the results unwrapped from each endpoint
-export default (responsesByEndpoint, options) => {
+export const unwrap = (responsesByEndpoint, options) => {
   let entries = {}
   const idsByEndpoint = {}
 
@@ -31,3 +31,5 @@ export default (responsesByEndpoint, options) => {
   // Return one unified `entries`, and a list of `IDs` per endpoint
   return [entries, idsByEndpoint]
 }
+
+export default unwrap

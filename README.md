@@ -64,7 +64,7 @@ You can unwrap a single object or a list, which is handy when you have arbitrary
 
 ```js
 import { request } from 'graphql-request'
-import unwrapOne from 'graphql-unwrap/unwrapOne'
+import { unwrapOne } from 'graphql-unwrap'
 
 const data = await request('https://graphql.api.com/', `{
   insert_todos (
