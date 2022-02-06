@@ -26,12 +26,13 @@ describe('unwrap', () => {
 
   it('should respect paths', async () => {
     const unwrapOptions = {
+      queryPath: 'returning',
       itemsPath: 'items'
     }
 
     const [entries, { foo }] = unwrap({
       foo: {
-        items: [
+        returning: [
           {
             __typename: 'post',
             id: 'a1',

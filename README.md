@@ -48,11 +48,27 @@ You can choose to unwrap only some of the endpoints in your query:
 [entriesById, idsByEndpoint] = unwrap(data, ['posts', 'users'])
 ```
 
+Or dig through multiple layers to get the items:
+
+```js
+[entriesById, idsByEndpoint] = unwrap({
+  updateBlogPosts {
+    returning: [
+      { /* ... */ }
+    ]
+  }
+}, {
+  queryPath: 'returning'
+})
+```
+
 To override all defaults:
 
 ```js
 [entriesById, idsByEndpoint] = unwrap(data, {
   keys: ['posts', 'users'],
+  queryPath: 'returning', // defaults to null
+  itemsPath: 'items', // defaults to null
   idKey: 'uuid',
   typeKey: 'type'
 })
@@ -166,3 +182,13 @@ function get (query) {
 
 const blogPostIds = await get(blogQuery)
 ```
+
+## Options reference
+
+Different GraphQL APIs have slightly different query and response formats. `graphql-unwrap` can help you parse the responses, if you set the correct options.
+
+|Provider|`queryPath` (queries)|`queryPath`(mutations)|`itemsPath` (queries)|`itemsPath` (mutations)|
+|-|-|-|-|-|
+|GraphCMS| – | – | – | – |
+|Nhost| – | `'returning'` | – | – |
+|8base| `'items'` | `'items'` | `'items'` | `'items'` |
