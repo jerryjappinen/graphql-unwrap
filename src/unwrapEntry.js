@@ -1,17 +1,18 @@
+import get from 'lodash/get'
+import isPlainObject from 'lodash/isPlainObject'
 import map from 'lodash/map'
 import merge from 'lodash/merge'
 
 import isEntry from './isEntry'
 import isListOfEntries from './isListOfEntries'
 import unwrapEntryList from './unwrapEntryList'
-
 import treatOptions from './treatOptions'
 
 // Takes in one data object with potentially nested objects
 // Returns a flat map of entries, where every object is keyed by their ID
 // Throws an error, if ID or type is missing
 const unwrapEntry = (originalEntryData, options) => {
-  const { idKey, typeKey } = treatOptions(options)
+  const { idKey, itemsPath, typeKey } = treatOptions(options)
 
   if (!originalEntryData[idKey] || !originalEntryData[typeKey]) {
     throw new Error(`unwrapEntry requires ID and ${typeKey} for all objects`)
@@ -42,17 +43,23 @@ const unwrapEntry = (originalEntryData, options) => {
         )
 
       // 2.2 Nested reference list
-      } else if (isListOfEntries(field, options)) {
-        // 2.1. Keep IDs of nested objects in field
-        // NOTE: if IDs are missing, we'll get errors in the next step, so we won't bother checking
-        mainEntry[fieldName] = map(field, idKey)
+      } else {
+        const potentialList = itemsPath && isPlainObject(field)
+          ? get(field, itemsPath)
+          : field
 
-        // 2.2. Move actual nested object data into entry map
-        entriesById = merge(
-          {},
-          entriesById,
-          unwrapEntryList(field, options)
-        )
+        if (isListOfEntries(potentialList, options)) {
+          // 2.1. Keep IDs of nested objects in field
+          // NOTE: if IDs are missing, we'll get errors in the next step, so we won't bother checking
+          mainEntry[fieldName] = map(potentialList, idKey)
+
+          // 2.2. Move actual nested object data into entry map
+          entriesById = merge(
+            {},
+            entriesById,
+            unwrapEntryList(potentialList, options)
+          )
+        }
       }
     }
   }
