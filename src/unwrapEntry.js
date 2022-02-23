@@ -15,7 +15,7 @@ const unwrapEntry = (originalEntryData, options) => {
   const { idKey, itemsPath, typeKey } = treatOptions(options)
 
   if (!originalEntryData[idKey] || !originalEntryData[typeKey]) {
-    throw new Error(`unwrapEntry requires ID and ${typeKey} for all objects`)
+    throw new Error(`unwrapEntry requires "${idKey}" and "${typeKey}" for all objects (${JSON.stringify(originalEntryData)})`)
   }
 
   // 1. Naively pick all fields from root object as-is
