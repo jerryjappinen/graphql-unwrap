@@ -70,4 +70,4 @@ const unwrapEntry = (originalEntryData, options) => {
   return entriesById
 }
 
-export default unwrapEntry
+export { unwrapEntry as default }

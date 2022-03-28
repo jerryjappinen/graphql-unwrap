@@ -3,7 +3,6 @@ import unwrapOne from './unwrapOne'
 
 export {
   unwrap,
-  unwrapOne
+  unwrapOne,
+  unwrap as default
 }
-
-export default unwrap
