@@ -1,3 +1,4 @@
+import forEach from 'lodash/forEach'
 import merge from 'lodash/merge'
 
 import unwrapEntry from './unwrapEntry'
@@ -6,7 +7,7 @@ import unwrapEntry from './unwrapEntry'
 export default (entryList, options) => {
   let entriesById = {}
 
-  entryList.forEach((entryData) => {
+  forEach(entryList, (entryData) => {
     entriesById = merge(
       {},
       entriesById,
