@@ -1,4 +1,4 @@
-# graphql-unwrapper
+# graphql-unwrap
 
 Unwrap nested objects from GraphQL responses into a flat storage by ID. Works with [GraphCMS](https://graphcms.com) and other providers. Can be used either client-side or server-side.
 
