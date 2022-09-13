@@ -161,7 +161,7 @@ This way, it's easy to render the title of the blog post, even if the body text 
 ```js
 import { request } from 'graphql-request'
 import unwrap from 'graphql-unwrap'
-import merge from 'lodash/merge'
+import merge from 'lodash-es/merge'
 
 // This could be your Vuex store or other global state, or reusable in some other way
 const allEntriesById = {}

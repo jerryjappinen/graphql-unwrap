@@ -1,6 +1,6 @@
-import get from 'lodash/get'
-import isArray from 'lodash/isArray'
-import merge from 'lodash/merge'
+import get from 'lodash-es/get'
+import isArray from 'lodash-es/isArray'
+import merge from 'lodash-es/merge'
 
 import treatOptions from './treatOptions'
 import unwrapOne from './unwrapOne'

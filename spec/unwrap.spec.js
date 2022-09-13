@@ -1,3 +1,8 @@
+import { describe, it, expect } from 'vitest'
+
+import isArray from 'lodash-es/isArray'
+import isPlainObject from 'lodash-es/isPlainObject'
+
 import unwrap from '../src'
 
 describe('unwrap', () => {
@@ -19,9 +24,9 @@ describe('unwrap', () => {
       }
     })
 
-    expect(entries).toBeObject()
-    expect(idsByEndpoint.foo).toBeArray()
-    expect(idsByEndpoint.bar).toBeArray()
+    expect(isArray(idsByEndpoint.foo)).toBeTruthy()
+    expect(isArray(idsByEndpoint.bar)).toBeTruthy()
+    expect(isPlainObject(entries)).toBeTruthy()
   })
 
   it('should respect paths', async () => {
@@ -69,7 +74,7 @@ describe('unwrap', () => {
       }
     }, unwrapOptions)
 
-    expect(entries).toBeObject()
-    expect(foo).toBeArray()
+    expect(isArray(foo)).toBeTruthy()
+    expect(isPlainObject(entries)).toBeTruthy()
   })
 })

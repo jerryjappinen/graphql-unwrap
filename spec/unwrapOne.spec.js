@@ -1,3 +1,8 @@
+import { describe, it, expect } from 'vitest'
+
+import isArray from 'lodash-es/isArray'
+import isPlainObject from 'lodash-es/isPlainObject'
+
 import unwrapOne from '../src/unwrapOne'
 
 describe('unwrapOne', () => {
@@ -28,8 +33,8 @@ describe('unwrapOne', () => {
 
     })
 
-    expect(entries).toBeObject()
-    expect(ids).toBeArray()
+    expect(isArray(ids)).toBeTruthy()
+    expect(isPlainObject(entries)).toBeTruthy()
   })
 
   it('should accept id option', async () => {
@@ -63,7 +68,7 @@ describe('unwrapOne', () => {
     })
 
     expect(ids.indexOf('a-1') > -1).toBeTruthy()
-    expect(entries['a-1'].type).toBeString()
+    expect(entries['a-1'].type).toBeTypeOf('string')
   })
 
   it('should accept type option', async () => {
@@ -95,6 +100,6 @@ describe('unwrapOne', () => {
       typeKey: 'type'
     })
 
-    expect(entries[ids[0]].type).toBeString()
+    expect(entries[ids[0]].type).toBeTypeOf('string')
   })
 })

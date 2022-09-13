@@ -1,7 +1,7 @@
-import get from 'lodash/get'
-import isPlainObject from 'lodash/isPlainObject'
-import map from 'lodash/map'
-import merge from 'lodash/merge'
+import get from 'lodash-es/get'
+import isPlainObject from 'lodash-es/isPlainObject'
+import map from 'lodash-es/map'
+import merge from 'lodash-es/merge'
 
 import isEntry from './isEntry'
 import isListOfEntries from './isListOfEntries'

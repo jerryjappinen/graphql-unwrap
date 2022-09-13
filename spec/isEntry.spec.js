@@ -1,3 +1,5 @@
+import { describe, it, expect } from 'vitest'
+
 import isEntry from '../src/isEntry'
 
 describe('isEntry', () => {

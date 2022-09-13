@@ -1,5 +1,5 @@
-import forEach from 'lodash/forEach'
-import merge from 'lodash/merge'
+import forEach from 'lodash-es/forEach'
+import merge from 'lodash-es/merge'
 
 import unwrapEntry from './unwrapEntry'
 
