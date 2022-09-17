@@ -187,8 +187,8 @@ const blogPostIds = await get(blogQuery)
 
 Different GraphQL APIs have slightly different query and response formats. `graphql-unwrap` can help you parse the responses, if you set the correct options.
 
-|Provider|`queryPath` (queries)|`queryPath`(mutations)|`itemsPath` (queries)|`itemsPath` (mutations)|
-|-|-|-|-|-|
-|GraphCMS| – | – | – | – |
-|Nhost| – | `'returning'` | – | – |
-|8base| `'items'` | `'items'` | `'items'` | `'items'` |
+|Provider|`queryPath` (queries)|`queryPath`(mutations)|`itemsPath` (queries)|`itemsPath` (mutations)|`richTextReferencesPath` (mutations)|
+|-|-|-|-|-|-|
+|Hygraph| – | – | – | – | – |
+|Nhost| – | `'returning'` | – | – | – |
+|8base| `'items'` | `'items'` | `'items'` | `'items'` | |
