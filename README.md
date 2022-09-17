@@ -1,10 +1,10 @@
 # graphql-unwrap
 
-Unwrap nested objects from GraphQL responses into a flat storage by ID. Works with [GraphCMS](https://graphcms.com) and other providers. Can be used either client-side or server-side.
+Unwrap nested objects from GraphQL responses into a flat storage by ID. Works with [Hygraph](https://hygraph.com) and other providers. Can be used either client-side or server-side.
 
 GraphQL endpoints typically return nested data. Deep nesting and recursion can sometimes be hard to handle, though. This library turns every GraphQL response into a more manageable, flat data structure that makes client-side development easier.
 
-Demo on Observable and GraphCMS: [observablehq.com](https://observablehq.com/@jerryjappinen/graph)
+Demo on Observable and Hygraph: [observablehq.com](https://observablehq.com/@jerryjappinen/graph)
 
 
 
