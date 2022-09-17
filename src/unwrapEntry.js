@@ -45,7 +45,6 @@ const unwrapEntry = (originalEntryData, options) => {
 
       // 2.2.3 Field is not entry, but it might be a rich text field
       } else if (richTextReferencesPath && isRichTextField(field, options)) {
-
         // Unwrap all entries nested as rich text references
         entriesById = merge(
           {},
@@ -70,7 +69,6 @@ const unwrapEntry = (originalEntryData, options) => {
             entriesById,
             unwrapEntryList(potentialList, options)
           )
-
         }
       }
     }
