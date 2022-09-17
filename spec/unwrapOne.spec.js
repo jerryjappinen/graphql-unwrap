@@ -1,7 +1,9 @@
 import { describe, it, expect } from 'vitest'
 
+import includes from 'lodash-es/includes'
 import isArray from 'lodash-es/isArray'
 import isPlainObject from 'lodash-es/isPlainObject'
+import keys from 'lodash-es/keys'
 
 import unwrapOne from '../src/unwrapOne'
 
@@ -9,28 +11,57 @@ describe('unwrapOne', () => {
   it('should return correct types', async () => {
     const [entries, ids] = unwrapOne({
       __typename: 'Parent',
-      id: 'a-1',
+      id: 'a1',
 
       firstBorn: {
         __typename: 'Child',
-        id: 'b-1'
+        id: 'b1'
       },
 
       children: [
         {
           __typename: 'Child',
-          id: 'b-1'
+          id: 'b1'
         },
         {
           __typename: 'Child',
-          id: 'b-2'
+          id: 'b2'
         },
         {
           __typename: 'Child',
-          id: 'b-3'
+          id: 'b3'
         }
       ]
 
+    })
+
+    expect(isArray(ids)).toBeTruthy()
+    expect(isPlainObject(entries)).toBeTruthy()
+
+    // `ids` will contain the top-level ID
+    expect(ids.length).toEqual(1)
+    expect(ids[0]).toEqual('a1')
+
+    // `entries` should contain everything
+    const mustHaveEntries = ['a1', 'b1', 'b2', 'b3']
+    mustHaveEntries.forEach((id) => {
+      expect(includes(keys(entries), id)).toBeTruthy()
+    })
+  })
+
+  it('should return entries from rich text references', async () => {
+    const [entries, ids] = unwrapOne({
+      __typename: 'Parent',
+      id: 'a1',
+
+      someRichTextField: {
+        references: [
+          {
+            __typename: 'Child',
+            id: 'b1'
+          }
+        ]
+      }
     })
 
     expect(isArray(ids)).toBeTruthy()
